@@ -43,7 +43,7 @@ Within your Windows 10 virtual machine, download and install WireShark. Open the
 <p>
 Next, we will configure the Linux vms firewall to block ICMP traffic. Initiate a nonstop ping from the Windows vm to the Linus vm. type the command ping (the private ip of the Limux vv) -t. 
   <p>
-<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/nwmvNDA.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 </p>
 <br />
@@ -51,7 +51,7 @@ Next, we will configure the Linux vms firewall to block ICMP traffic. Initiate a
 <p>
 Within the Azure portal, go to the Linux vm. Go to the 'Networking' tab. then to 'Network Settings'. Click the link under 'Network Security Group'. CLick 'Settings' and then 'inbound security rules'. Click 'Add'. Put an asterisk under Source port ranges and destination port ranges. Put 'any' for destination. Set the priority to 290. Set the  action to 'deny'. Then click 'add'. The requests from the Windows Machine will start to time out because of the configured firewall.
   <p>
-<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/ZGSCMYz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 </p>
 <br />
