@@ -32,12 +32,8 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Step 4
 
 <h2>Actions and Observations</h2>
-
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Within your Windows 10 virtual machine, download and install WireShark. Open the Wireshark App and click on the 'Ethernet' interface. Click on the shark fin in the top left corner. Filter for ICMP traffic (what the ping command uses) by typing 'ICMP' in the box that says 'Apply a Display Filter'. In Windows Powershell, ping the private ip address of the Linux vm. Observe the ICMP traffic in Wireshark.
+Within your Windows 10 virtual machine, download and install WireShark. Open the Wireshark App and click on the 'Ethernet' interface. Click on the shark fin in the top left corner. Filter for ICMP traffic (what the ping command uses) by typing 'ICMP' in the box that says 'Apply a Display Filter'. In Windows Powershell, ping the private ip address of the Linux vm. Observe the ICMP traffic in Wireshark. We can see the requests from the source vm (Windows 10) and the reply from the destination vm (Linux Server 24)
 </p>
 <br />
 
@@ -45,14 +41,17 @@ Within your Windows 10 virtual machine, download and install WireShark. Open the
 <img src="https://imgur.com/wK7By1G.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Next, we will configure the Linux vms firewall to block ICMP traffic. Initiate a nonstop ping from the Windows vm to the Linus vm. type the command ping (the private ip of the Limux vv) -t. 
+  <p>
+<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Within the Azure portal, go to the Linux vm. Go to the 'Networking' tab. then to 'Network Settings'. Click the link under 'Network Security Group'. CLick 'Settings' and then 'inbound security rules'. Click 'Add'. Put an asterisk under Source port ranges and destination port ranges. Put 'any' for destination. Set the priority to 290. Set the  action to 'deny'. Then click 'add'. The requests from the Windows Machine will start to time out because of the configured firewall.
+  <p>
+<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </p>
 <br />
