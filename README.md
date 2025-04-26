@@ -26,70 +26,19 @@ In this tutorial, we use Azure to create a virtual machine. On which, we will in
 
 ![myPC](https://imgur.com/daHIGrc.png)
 
- 2. On your Windows 10 virtual machine, Download the ProtonVPN client on the account just created. Observe changes in the ip, location, and ISP. They are different because Azure has created its own secure tunnel similar to how Proton VPN creates its own VPN tunnels.
+ 2. On your Windows 10 virtual machine, Download the ProtonVPN client on the account just created. Navigate to www.whatismyipaddress.com. Observe changes in the ip, location, and ISP. They are different because Azure has created its own secure tunnel similar to how Proton VPN creates its own VPN tunnels.
 
 
 ![win-10](https://imgur.com/bvfrKIX.png)
 
-### 3. Configure Network Security Group
-Within the Azure portal, navigate to the Linux VM. Go to the **Networking** tab, then to **Network Settings**. Click the link under **Network Security Group**. Click **Settings** and then **Inbound security rules**. Click **Add** and configure the following:
-- **Source port ranges**: *
-- **Destination port ranges**: any
-- **Priority**: 290
-- **Action**: Deny
+3. On the ProtonVPN client click 'get connected'. Your VPN server will make it appear as if it is in a different location. Mine appeared as if they were in The Netherlands and Japan. Observe the changes in the ip, location, and ISP. Try going to different websites and observe changes in the appearance, language, currency, etc.
 
-After adding this rule, the requests from the Windows machine will start to time out due to the configured firewall.
 
-![Network Security Group Configuration](https://imgur.com/ZGSCMYz.png)
 
-### 4. Resume ICMP Traffic
-Delete the blocking rule in the Azure portal on the Linux VM to resume ICMP traffic.
-
-### 5. Observe SSH Traffic
-Now, we will observe SSH traffic in Wireshark. Start another packet capture and filter for SSH traffic. From the Windows 10 VM, SSH into the Linux Server 24 VM by typing:
-
-ssh@username< private ip address >
-
-Enter the password for the Linux machine. The prompt will change, indicating you are now in the Linux machine's command line using TCP port 22. End the connection by typing `exit`.
-</p>
-<p>
-    <img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="SSH Traffic"/>
-</p>
-<p>
-    <img src="https://imgur.com/tTUttbJ.png" height="80%" width="80%" alt="SSH Command Prompt"/>
-</p>
-
-### 6. Observe DHCP Traffic
-<p>
-Start another packet capture in Wireshark and filter for DHCP. Open Notepad and type the following commands:
-
-ipconfig /release
-ipconfig /renew
-
-Save this as `dhcp.bat` in `C:\ProgramData`. In PowerShell, navigate to `C:\ProgramData`, list the folder contents, and run `dhcp.bat`.
-</p>
-<p>
-    <img src="https://imgur.com/C
-      
-### 7. Observe DNS Traffic
-Start another packet capture in Wireshark and filter for DNS. In PowerShell, type each:
-
-nslookup 8.8.8.8 
-nslookup www.google.com
-
-Observe the DNS traffic. You can also filter by its TCP and UDP port, which is 53.
-
-![DNS Traffic](https://imgur.com/PqtO4NM.png)
-
-### 8. Observe RDP Traffic
-Now, we will observe RDP traffic in Wireshark. Start another packet capture and filter for RDP. Since we are remotely connecting to our two Azure VMs, we use RDP over TCP port 3389. To filter for this traffic, type: tcp.port == 3389
-
-We will seemingly be spammed with traffic as RDP is constantly streaming a picture.
-
-<p>
-    <img src="https://imgur.com/rUMfpKJ.png" height="80%" width="80%" alt="RDP Traffic"/>
-</p>
-
+![netherlands](https://imgur.com/wfxgjeA.png)
+![netherlands](https://imgur.com/qvcxFO6.png)
+![japan](https://imgur.com/vw0bqsW.png)
+![japan](https://imgur.com/LZimggP.png)
 
 
 
