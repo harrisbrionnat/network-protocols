@@ -55,3 +55,19 @@ Within the Azure portal, go to the Linux vm. Go to the 'Networking' tab. then to
 </p>
 </p>
 <br />
+<p>
+Delete the rule in the Azure portal on the Linux vm to resume ICMP traffic. 
+</p>
+<br />
+<p>
+Now, we will observe SSH traffic in WireShark. Start another packet capture and filter for ssh traffic this time. From the Windows 10 vm SSH into the Linux Server 24 vm. Type in: ssh username@<private ip address> (This is for the Linux vm). Then enter the password for the linux machine. Note that the prompt changed and we are now 'in' the Linux machine.
+  
+  <p>
+<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+ <p>
+<img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+</p>
+<br />
+<p>
