@@ -82,7 +82,7 @@ Now, we will observe DHCP traffic in Wireshark. In Wireshark, start another pack
    
 </p>
 
-Now, we will observe DNS traffic in Wireshark. In WireShark, start another packet capture and filter for DNS. In Powershell type nslookup 8.8.8.8 and nslookup www.google.com. Observe the DNS traffic.
+Now, we will observe DNS traffic in Wireshark. In WireShark, start another packet capture and filter for DNS. In Powershell type nslookup 8.8.8.8 and nslookup www.google.com. Observe the DNS traffic. You can also filter by its TCP and UDP port which is 53.
 <p>
 <img src="https://imgur.com/PqtO4NM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
    
@@ -90,3 +90,10 @@ Now, we will observe DNS traffic in Wireshark. In WireShark, start another packe
 </p>
 <br />
 <p>
+
+Now, we will observe RDP traffic in Wireshark. In Wireshark, start another packet capture and filter for RDP. Since we are remotely connecting to our two Azure vms, we are using rdp --tcp port 3389. Type tcp.port == 3389. We will seemingly be spammed with traffic as rdp is constantly streaming a picture.
+<p>
+<img src="https://imgur.com/rUMfpKJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+   
+</p>
+
