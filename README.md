@@ -26,13 +26,10 @@ In this tutorial, we use Azure to create a virtual machine. On which, we will in
 
 ![myPC](https://imgur.com/daHIGrc.png)
 
-### 2. Block ICMP Traffic
-Next, we will configure the Linux VM's firewall to block ICMP traffic. Initiate a nonstop ping from the Windows VM to the Linux VM by typing the command:
-
-ping  -t
+ 2. On your Windows 10 virtual machine, Download the ProtonVPN client on the account just created. Observe changes in the ip, location, and ISP. They are different because Azure has created its own secure tunnel similar to how Proton VPN creates its own VPN tunnels.
 
 
-![Block ICMP](https://imgur.com/nwmvNDA.png)
+![win-10](https://imgur.com/bvfrKIX.png)
 
 ### 3. Configure Network Security Group
 Within the Azure portal, navigate to the Linux VM. Go to the **Networking** tab, then to **Network Settings**. Click the link under **Network Security Group**. Click **Settings** and then **Inbound security rules**. Click **Add** and configure the following:
