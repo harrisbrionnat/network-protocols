@@ -1,99 +1,107 @@
 <p align="center">
-<img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
+    <img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
 </p>
 
-<h1>Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines</h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
+# Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines
+In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups.
 
 
-<h2>Video Demonstration</h2>
-
-- ### [YouTube: Azure Virtual Machines, Wireshark, and Network Security Groups](https://www.youtube.com)
-
-<h2>Environments and Technologies Used</h2>
-
+## Environments and Technologies Used
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
 - Various Command-Line Tools
-- Various Network Protocols (SSH, RDH, DNS, HTTP/S, ICMP)
+- Various Network Protocols (SSH, RDP, DNS, HTTP/S, ICMP)
 - Wireshark (Protocol Analyzer)
 
-<h2>Operating Systems Used </h2>
-
+## Operating Systems Used 
 - Windows 10 (21H2)
 - Ubuntu Server 20.04
 
-<h2>High-Level Steps</h2>
+## High-Level Steps
+- Create two Azure virtual machines: one running Windows 10 and another running Ubuntu Linux.
+- Examine ICMP traffic with Wireshark.
+- Examine SSH traffic with Wireshark.
+- Examine DHCP traffic with Wireshark.
+- Examine DNS traffic with Wireshark.
+- Examine RDP traffic with Wireshark.
+
+## Actions and Observations
+
+### 1. Examine ICMP Traffic
+Within your Windows 10 virtual machine, download and install Wireshark. Open the Wireshark app and click on the 'Ethernet' interface. Click the shark fin in the top left corner. Filter for ICMP traffic (what the ping command uses) by typing `ICMP` in the box that says 'Apply a Display Filter'. 
+
+In Windows PowerShell, ping the private IP address of the Linux VM. Observe the ICMP traffic in Wireshark where you can see requests from the source VM (Windows 10) and replies from the destination VM (Linux Server 24).
+
+![ICMP Traffic](https://imgur.com/wK7By1G.png)
+
+### 2. Block ICMP Traffic
+Next, we will configure the Linux VM's firewall to block ICMP traffic. Initiate a nonstop ping from the Windows VM to the Linux VM by typing the command:
+
+ping  -t
 
 
-- You will need to have created two Azuzre virtual machines. One running Windows 10 and another running Ubuntu Linux.
-- Examine ICMP traffic with Wireshark
-- Examine SSH traffic with Wireshark
-- Examine DHCP traffic with Wireshark
-- Examine DNS traffic with Wireshark
-- Examine RDP traffic with Wireshark
+![Block ICMP](https://imgur.com/nwmvNDA.png)
 
-<h2>Actions and Observations</h2>
-<p>
-Within your Windows 10 virtual machine, download and install WireShark. Open the Wireshark App and click on the 'Ethernet' interface. Click on the shark fin in the top left corner. Filter for ICMP traffic (what the ping command uses) by typing 'ICMP' in the box that says 'Apply a Display Filter'. In Windows Powershell, ping the private ip address of the Linux vm. Observe the ICMP traffic in Wireshark. We can see the requests from the source vm (Windows 10) and the reply from the destination vm (Linux Server 24)
-</p>
-<br />
+### 3. Configure Network Security Group
+Within the Azure portal, navigate to the Linux VM. Go to the **Networking** tab, then to **Network Settings**. Click the link under **Network Security Group**. Click **Settings** and then **Inbound security rules**. Click **Add** and configure the following:
+- **Source port ranges**: *
+- **Destination port ranges**: any
+- **Priority**: 290
+- **Action**: Deny
 
-<p>
-<img src="https://imgur.com/wK7By1G.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Next, we will configure the Linux vms firewall to block ICMP traffic. Initiate a nonstop ping from the Windows vm to the Linus vm. type the command ping (the private ip of the Limux vv) -t. 
-  <p>
-<img src="https://imgur.com/nwmvNDA.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-</p>
-<br />
+After adding this rule, the requests from the Windows machine will start to time out due to the configured firewall.
 
+![Network Security Group Configuration](https://imgur.com/ZGSCMYz.png)
+
+### 4. Resume ICMP Traffic
+Delete the blocking rule in the Azure portal on the Linux VM to resume ICMP traffic.
+
+### 5. Observe SSH Traffic
+Now, we will observe SSH traffic in Wireshark. Start another packet capture and filter for SSH traffic. From the Windows 10 VM, SSH into the Linux Server 24 VM by typing:
+
+ssh@username< private ip address >
+
+Enter the password for the Linux machine. The prompt will change, indicating you are now in the Linux machine's command line using TCP port 22. End the connection by typing `exit`.
+</p>
 <p>
-Within the Azure portal, go to the Linux vm. Go to the 'Networking' tab. then to 'Network Settings'. Click the link under 'Network Security Group'. CLick 'Settings' and then 'inbound security rules'. Click 'Add'. Put an asterisk under Source port ranges and destination port ranges. Put 'any' for destination. Set the priority to 290. Set the  action to 'deny'. Then click 'add'. The requests from the Windows Machine will start to time out because of the configured firewall.
-  <p>
-<img src="https://imgur.com/ZGSCMYz.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+    <img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="SSH Traffic"/>
 </p>
-</p>
-<br />
 <p>
-Delete the rule in the Azure portal on the Linux vm to resume ICMP traffic. 
-</p>
-<br />
-<p>
-Now, we will observe SSH traffic in WireShark. Start another packet capture and filter for ssh traffic this time. From the Windows 10 vm SSH into the Linux Server 24 vm. Type in: ssh username@<private ip address> (This is for the Linux vm). Then enter the password for the linux machine. Note that the prompt changed and we are now 'in' the Linux machine's command line and using TCP port 22. End the connection to the Linux vm by typing 'exit' in the command line.
-  
- 
- <p>
-<img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
- <p>
-<img src="https://imgur.com/tTUttbJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-   
-</p>
-Now, we will observe DHCP traffic in Wireshark. In Wireshark, start another packet capture and filter for dhcp. Open the Notepad app and type in ip/config /release ip/config /renew. Save it to c:\programdata and as the file as dhcp.bat. We will run this script in Powershell. Cd into c:\programdata. Type ls to list the folder contents. Run dhcp.bat in Powershell. 
- <p>
-<img src="https://imgur.com/CaVtH1S.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-   
-</p>
- <p>
-<img src="https://imgur.com/XTHs1lM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-   
+    <img src="https://imgur.com/tTUttbJ.png" height="80%" width="80%" alt="SSH Command Prompt"/>
 </p>
 
-Now, we will observe DNS traffic in Wireshark. In WireShark, start another packet capture and filter for DNS. In Powershell type nslookup 8.8.8.8 and nslookup www.google.com. Observe the DNS traffic. You can also filter by its TCP and UDP port which is 53.
+### 6. Observe DHCP Traffic
 <p>
-<img src="https://imgur.com/PqtO4NM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-   
-</p>
-</p>
-<br />
-<p>
+Start another packet capture in Wireshark and filter for DHCP. Open Notepad and type the following commands:
 
-Now, we will observe RDP traffic in Wireshark. In Wireshark, start another packet capture and filter for RDP. Since we are remotely connecting to our two Azure vms, we are using rdp --tcp port 3389. Type tcp.port == 3389. We will seemingly be spammed with traffic as rdp is constantly streaming a picture.
-<p>
-<img src="https://imgur.com/rUMfpKJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-   
+ipconfig /release
+ipconfig /renew
+
+Save this as `dhcp.bat` in `C:\ProgramData`. In PowerShell, navigate to `C:\ProgramData`, list the folder contents, and run `dhcp.bat`.
 </p>
+<p>
+    <img src="https://imgur.com/C
+      
+### 7. Observe DNS Traffic
+Start another packet capture in Wireshark and filter for DNS. In PowerShell, type each:
+
+nslookup 8.8.8.8 
+nslookup www.google.com
+
+Observe the DNS traffic. You can also filter by its TCP and UDP port, which is 53.
+
+![DNS Traffic](https://imgur.com/PqtO4NM.png)
+
+### 8. Observe RDP Traffic
+Now, we will observe RDP traffic in Wireshark. Start another packet capture and filter for RDP. Since we are remotely connecting to our two Azure VMs, we use RDP over TCP port 3389. To filter for this traffic, type: tcp.port == 3389
+
+We will seemingly be spammed with traffic as RDP is constantly streaming a picture.
+
+<p>
+    <img src="https://imgur.com/rUMfpKJ.png" height="80%" width="80%" alt="RDP Traffic"/>
+</p>
+
+
+
+
 
