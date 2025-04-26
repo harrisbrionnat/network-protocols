@@ -18,14 +18,13 @@ In this tutorial, we use Azure to create a virtual machine. On which, we will in
 - Windows 10 (21H2)
 - MacOS Sonoma
 
+  You will need to have created a Windows 10 virtual machine in Azure and set the location to West US 2.
+
 ## Actions and Observations
 
-### 1. Examine ICMP Traffic
-Within your Windows 10 virtual machine, download and install Wireshark. Open the Wireshark app and click on the 'Ethernet' interface. Click the shark fin in the top left corner. Filter for ICMP traffic (what the ping command uses) by typing `ICMP` in the box that says 'Apply a Display Filter'. 
+ 1. Within your OWN pc, go to wwww.whatismyipaddress.com. Observe the following: ip address, location, ISP. Then go to the ProtonVPN website and create a free account. Do not download.
 
-In Windows PowerShell, ping the private IP address of the Linux VM. Observe the ICMP traffic in Wireshark where you can see requests from the source VM (Windows 10) and replies from the destination VM (Linux Server 24).
-
-![ICMP Traffic](https://imgur.com/wK7By1G.png)
+![myPC](https://imgur.com/daHIGrc.png)
 
 ### 2. Block ICMP Traffic
 Next, we will configure the Linux VM's firewall to block ICMP traffic. Initiate a nonstop ping from the Windows VM to the Linux VM by typing the command:
