@@ -1,29 +1,22 @@
 <p align="center">
-    <img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
+    <img src="https://imgur.com/YG6yT33.png" alt="Traffic Examination"/>
 </p>
 
-# Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines
-In this tutorial, we observe various network traffic to a Windows 10 vm with Wireshark and explore Network Security Groups.
+# Installing a VPN Server on a Windows 10 Virtual Machine
+In this tutorial, we use Azure to create a virtual machine. On which, we will install ProtonVPN and analyze differences in ip address, location, and common websites.
 
 
 ## Environments and Technologies Used
 - Microsoft Azure (Virtual Machines/Compute)
 - Remote Desktop
-- Various Command-Line Tools
-- Various Network Protocols (SSH, RDP, DNS, DHCP, ICMP)
-- Wireshark (Protocol Analyzer)
+- MacOS Sonoma 14.0
+- ProtonVPN
+
+
 
 ## Operating Systems Used 
 - Windows 10 (21H2)
-- Ubuntu Server 24.04
-
-## High-Level Steps
-- Create two Azure virtual machines: one running Windows 10 and another running Ubuntu Linux.
-- Examine ICMP traffic with Wireshark.
-- Examine SSH traffic with Wireshark.
-- Examine DHCP traffic with Wireshark.
-- Examine DNS traffic with Wireshark.
-- Examine RDP traffic with Wireshark.
+- MacOS Sonoma
 
 ## Actions and Observations
 
