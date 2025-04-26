@@ -29,7 +29,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - You will need to have created two Azuzre virtual machines. One running Windows 10 and another running Ubuntu Linux.
 - Examine ICMP traffic with Wireshark
 - Examine SSH traffic with Wireshark
-- Step 4
+- Examine DHCP traffic with Wireshark
+- Examine DNS traffic with Wireshark
+- Examine RDP traffic with Wireshark
 
 <h2>Actions and Observations</h2>
 <p>
@@ -77,6 +79,12 @@ Now, we will observe DHCP traffic in Wireshark. In Wireshark, start another pack
 </p>
  <p>
 <img src="https://imgur.com/XTHs1lM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+   
+</p>
+
+Now, we will observe DNS traffic in Wireshark. In WireShark, start another packet capture and filter for DNS. In Powershell type nslookup 8.8.8.8 and nslookup www.google.com. Observe the DNS traffic.
+<p>
+<img src="https://imgur.com/PqtO4NM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
    
 </p>
 </p>
