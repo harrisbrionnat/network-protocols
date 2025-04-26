@@ -60,16 +60,24 @@ Delete the rule in the Azure portal on the Linux vm to resume ICMP traffic.
 </p>
 <br />
 <p>
-Now, we will observe SSH traffic in WireShark. Start another packet capture and filter for ssh traffic this time. From the Windows 10 vm SSH into the Linux Server 24 vm. Type in: ssh username@<private ip address> (This is for the Linux vm). Then enter the password for the linux machine. Note that the prompt changed and we are now 'in' the Linux machine.
+Now, we will observe SSH traffic in WireShark. Start another packet capture and filter for ssh traffic this time. From the Windows 10 vm SSH into the Linux Server 24 vm. Type in: ssh username@<private ip address> (This is for the Linux vm). Then enter the password for the linux machine. Note that the prompt changed and we are now 'in' the Linux machine's command line and using TCP port 22. End the connection to the Linux vm by typing 'exit' in the command line.
   
-  <p>
-<img src="https://imgur.com/undefined.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+ 
  <p>
 <img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
  <p>
 <img src="https://imgur.com/tTUttbJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+   
+</p>
+Now, we will observe DHCP traffic in Wireshark. In Wireshark, start another packet capture and filter for dhcp. Open the Notepad app and type in ip/config /release ip/config /renew. Save it to c:\programdata and as the file as dhcp.bat. We will run this script in Powershell. Cd into c:\programdata. Type ls to list the folder contents. Run dhcp.bat in Powershell. 
+ <p>
+<img src="https://imgur.com/CaVtH1S.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+   
+</p>
+ <p>
+<img src="https://imgur.com/XTHs1lM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+   
 </p>
 </p>
 <br />
