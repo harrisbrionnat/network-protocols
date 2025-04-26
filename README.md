@@ -27,8 +27,8 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 - You will need to have created two Azuzre virtual machines. One running Windows 10 and another running Ubuntu Linux.
-- Step 2
-- Step 3
+- Examine ICMP traffic with Wireshark
+- Examine SSH traffic with Wireshark
 - Step 4
 
 <h2>Actions and Observations</h2>
@@ -67,6 +67,9 @@ Now, we will observe SSH traffic in WireShark. Start another packet capture and 
 </p>
  <p>
 <img src="https://imgur.com/w7JpJaG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+ <p>
+<img src="https://imgur.com/tTUttbJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 </p>
 <br />
