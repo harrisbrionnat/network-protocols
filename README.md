@@ -15,7 +15,7 @@ In this tutorial, we observe various network traffic to a Windows 10 vm with Wir
 
 ## Operating Systems Used 
 - Windows 10 (21H2)
-- Ubuntu Server 20.04
+- Ubuntu Server 24.04
 
 ## High-Level Steps
 - Create two Azure virtual machines: one running Windows 10 and another running Ubuntu Linux.
